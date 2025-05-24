@@ -1,13 +1,13 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
-import CreateCabinForm from './CreateCabinForm'
-import { formatCurrency } from '../../utils/helpers'
-import useDeleteCabins from './useDeleteCabins'
-import { HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2'
-import useCreateCabins from './useCreateCabins'
-import Modal from '../../ui/Modal'
-import ConfirmDelete from '../../ui/ConfirmDelete'
-import Table from '../../ui/Table'
+import CreateCabinForm from "./CreateCabinForm";
+import { formatCurrency } from "../../utils/helpers";
+import useDeleteCabins from "./useDeleteCabins";
+import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
+import useCreateCabins from "./useCreateCabins";
+import Modal from "../../ui/Modal";
+import ConfirmDelete from "../../ui/ConfirmDelete";
+import Table from "../../ui/Table";
 
 // const TableRow = styled.div`
 //   display: grid;
@@ -28,25 +28,25 @@ const Img = styled.img`
   object-fit: cover;
   object-position: center;
   transform: scale(1.5) translateX(-7px);
-`
+`;
 
 const Cabin = styled.div`
   font-size: 1.6rem;
   font-weight: 600;
   color: var(--color-grey-600);
-  font-family: 'Sono';
-`
+  font-family: "Sono";
+`;
 
 const Price = styled.div`
-  font-family: 'Sono';
+  font-family: "Sono";
   font-weight: 600;
-`
+`;
 
 const Discount = styled.div`
-  font-family: 'Sono';
+  font-family: "Sono";
   font-weight: 500;
   color: var(--color-green-700);
-`
+`;
 
 export default function CabinRow({ cabin }) {
   const {
@@ -57,10 +57,10 @@ export default function CabinRow({ cabin }) {
     discount,
     image,
     description,
-  } = cabin
+  } = cabin;
 
-  const { isDeleting, deleteCabin } = useDeleteCabins()
-  const { isCreating, createCabin } = useCreateCabins()
+  const { isDeleting, deleteCabin } = useDeleteCabins();
+  const { isCreating, createCabin } = useCreateCabins();
 
   function handleDuplicate() {
     createCabin({
@@ -70,7 +70,7 @@ export default function CabinRow({ cabin }) {
       discount,
       image,
       description,
-    })
+    });
   }
 
   return (
@@ -112,9 +112,8 @@ export default function CabinRow({ cabin }) {
               />
             </Modal.Window>
           </Modal>
-
         </div>
       </Table.Row>
     </>
-  )
+  );
 }

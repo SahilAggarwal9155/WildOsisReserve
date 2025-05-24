@@ -55,19 +55,23 @@ const Button = styled.button`
 
 const ModalContext = createContext();
 
-function Modal({ children }){
-   const [openName, setOpenName] = useState("");
+function Modal({ children }) {
+  const [openName, setOpenName] = useState("");
 
-   const close = () => setOpenName("");
-   const open = setOpenName;
+  const close = () => setOpenName("");
+  const open = setOpenName;
 
-   return <ModalContext.Provider value={{openName, close, open}}>{children}</ModalContext.Provider>
+  return (
+    <ModalContext.Provider value={{ openName, close, open }}>
+      {children}
+    </ModalContext.Provider>
+  );
 }
 
-function Open({ children, opens: opensWindowName }){
+function Open({ children, opens: opensWindowName }) {
   const { open } = useContext(ModalContext);
 
-  return cloneElement(children , {onClick: () => open(opensWindowName)})
+  return cloneElement(children, { onClick: () => open(opensWindowName) });
 }
 
 function Window({ children, name }) {
@@ -76,9 +80,7 @@ function Window({ children, name }) {
   //Here this custom hook is made to tackle the situation of clicking outside the model window so when you click outside the window its close the model window
   const ref = useOutsideClick(close);
 
-
-
-  if(name !== openName) return null;
+  if (name !== openName) return null;
   //   createPortal is a React function that allows rendering components outside their
   // parent component’s DOM hierarchy.
   // --------------------------------------Most Important ------------------------------------------------------------
@@ -91,7 +93,7 @@ function Window({ children, name }) {
         <Button onClick={close}>
           <HiXMark />
         </Button>
-        <div>{cloneElement(children, { onCloseModal: close})}</div>
+        <div>{cloneElement(children, { onCloseModal: close })}</div>
       </StyledModal>
     </Overlay>,
     // The modal is rendered inside document.body instead of its parent component’s DOM tree.
@@ -104,8 +106,6 @@ Modal.Open = Open;
 Modal.Window = Window;
 
 export default Modal;
-
-
 
 // Event Handling (Bubbling and Capturing)
 // Why use event delegation?
