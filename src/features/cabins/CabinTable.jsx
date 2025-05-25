@@ -25,8 +25,10 @@ import Empty from "../../ui/Empty";
 export default function CabinTable() {
   const { isPending, cabins } = useCabin();
   const [searchParams] = useSearchParams();
+  let filterCabin;
 
-  if(!cabins.length) return <Empty resource={"Cabins"}/>
+
+  if(!cabins?.length) return <Empty resource={"Cabins"}/>
 
   if (isPending) return <Spinner />;
 
@@ -34,8 +36,7 @@ export default function CabinTable() {
   const filterValue = searchParams.get("discount");
   console.log(filterValue);
   
-  let filterCabin;
-  if (filterValue == "all") filterCabin = cabins;
+  if (filterValue == "all" || !filterValue) filterCabin = cabins;
   
   if (filterValue == "no-discount")
     filterCabin = cabins.filter((cabin) => cabin.discount === 0);
@@ -56,7 +57,7 @@ export default function CabinTable() {
   const [field, direction] = sortBy.split('-');
   const modifier = direction === "asc" ? 1 : -1;
 
-  const sortCabins = filterCabin.sort((a,b)=> (a[field]- b[field])*modifier);
+  const sortCabins = filterCabin?.sort((a,b)=> (a[field]- b[field])*modifier);
 
 
 
