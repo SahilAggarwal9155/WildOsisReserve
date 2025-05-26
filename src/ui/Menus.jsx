@@ -45,6 +45,7 @@ const StyledButton = styled.button`
   width: 100%;
   text-align: left;
   background: none;
+  white-space: nowrap;
   border: none;
   padding: 1.2rem 2.4rem;
   font-size: 1.4rem;

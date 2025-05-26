@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import BookingDataBox from "../../features/bookings/BookingDataBox";
+import Spinner from "../../ui/Spinner"
 
 import Row from "../../ui/Row";
 import Heading from "../../ui/Heading";
@@ -8,6 +9,8 @@ import Button from "../../ui/Button";
 import ButtonText from "../../ui/ButtonText";
 
 import { useMoveBack } from "../../hooks/useMoveBack";
+import { useBookingId } from "../bookings/useBookingId";
+import { useState } from "react";
 
 const Box = styled.div`
   /* Box */
@@ -18,9 +21,11 @@ const Box = styled.div`
 `;
 
 function CheckinBooking() {
+  const [confirmedPaid, setConfirmedPaid] = useState();
+  const {isPending, booking = {} } = useBookingId();
   const moveBack = useMoveBack();
-
-  const booking = {};
+  
+  if(isPending) return <Spinner />
 
   const {
     id: bookingId,
