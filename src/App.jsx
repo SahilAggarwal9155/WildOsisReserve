@@ -27,7 +27,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <>
-      <GlobalStyles />
+     <GlobalStyles />
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
         <BrowserRouter>

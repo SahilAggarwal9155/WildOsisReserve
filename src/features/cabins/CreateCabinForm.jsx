@@ -46,10 +46,10 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
       editCabin(
         { newCabinData: { ...data, image }, id: editId },
         {
-          onSuccess: (data) => {
+          onSuccess: () => {
             reset(),
               //Same thing happen here if its edit the cabin so it automatically remove the modal from window
-              onCloseModal?.();
+            onCloseModal?.();
           },
         },
       );
@@ -57,7 +57,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
       createCabin(
         { ...data, image },
         {
-          onSuccess: (data) => {
+          onSuccess: () => {
             reset(),
               //If apply this so after sucess created the cabin it automatically off the modal window
               onCloseModal?.();

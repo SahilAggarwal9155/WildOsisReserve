@@ -61,7 +61,7 @@ export default function CabinRow({ cabin }) {
   } = cabin;
 
   const { isDeleting, deleteCabin } = useDeleteCabins();
-  const { isCreating, createCabin } = useCreateCabins();
+  const { createCabin } = useCreateCabins();
 
   function handleDuplicate() {
     createCabin({
@@ -108,7 +108,7 @@ export default function CabinRow({ cabin }) {
               </Menus.List>
 
               <Modal.Window name="edit">
-                <CreateCabinForm cabinToEdit={cabin} />
+                <CreateCabinForm cabinToEdit={cabin}/>
               </Modal.Window>
 
               <Modal.Window name="delete">
