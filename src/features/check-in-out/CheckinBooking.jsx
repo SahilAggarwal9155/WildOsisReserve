@@ -49,7 +49,17 @@ function CheckinBooking() {
   function handleCheckin() {
     if (!confirmedPaid) return
 
-    checkin(bookingId)
+    if(addBreakfast){
+         checkin({bookingId, breakfast: {
+          hasBreakfast: true,
+          extrasPrice: optionalBreakfastPrice,
+          totalPrice: totalPrice+ optionalBreakfastPrice,
+
+         }})
+    }
+    else{
+      checkin({bookingId, breakfast: {}});
+    }
   }
 
   return (
@@ -68,7 +78,6 @@ function CheckinBooking() {
               setAddBreakfast((breakfast) => !breakfast)
               setConfirmedPaid(false)
             }}
-            disabled={addBreakfast}
             id="breakfast"
           >
             Want to add breakfast {formatCurrency(optionalBreakfastPrice)}?
@@ -84,10 +93,10 @@ function CheckinBooking() {
         >
           I confirmed that {guests.fullName} has paid the total amount of{' '}
           {!addBreakfast
-            ? formatCurrency(totalPrice)
-            : `${formatCurrency(totalPrice + optionalBreakfastPrice)}`(
-                `${formatCurrency(totalPrice)} + ${formatCurrency(optionalBreakfastPrice)}}`
-              )}
+            ? `${formatCurrency(totalPrice)}`
+            : `${formatCurrency(totalPrice + optionalBreakfastPrice)}(
+                ${formatCurrency(totalPrice)} + ${formatCurrency(optionalBreakfastPrice)})`
+              }
         </CheckBox>
       </Box>
       <ButtonGroup>
