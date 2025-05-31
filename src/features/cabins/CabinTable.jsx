@@ -27,23 +27,20 @@ export default function CabinTable() {
   const [searchParams] = useSearchParams();
   let filterCabin;
 
-
-  if(!cabins?.length) return <Empty resource={"Cabins"}/>
+  if (!cabins?.length) return <Empty resource={"Cabins"} />;
 
   if (isPending) return <Spinner />;
 
   //1. This is for discount
   const filterValue = searchParams.get("discount");
   console.log(filterValue);
-  
+
   if (filterValue == "all" || !filterValue) filterCabin = cabins;
-  
+
   if (filterValue == "no-discount")
     filterCabin = cabins.filter((cabin) => cabin.discount === 0);
   if (filterValue == "with-discount")
     filterCabin = cabins.filter((cabin) => cabin.discount > 0);
-
-
 
   // {value: 'name-asc', label: 'Sort by name (A-Z)'},
   //       {value: 'name-desc', label: 'Sort by name (Z-A)'},
@@ -51,16 +48,15 @@ export default function CabinTable() {
   //       {value: 'regualrPrice-desc', label: 'Sort by price (high first)'},
   //       {value: 'maxCapacity-asc', label: 'Sort by capacity (low first)'},
   //       {value: 'maxCapacity-desc', label: 'Sort by capacity (high first)'}
-  
-  2//This is for sorting
+
+  2; //This is for sorting
   const sortBy = searchParams.get("sortBy") || "startDate-asc";
-  const [field, direction] = sortBy.split('-');
+  const [field, direction] = sortBy.split("-");
   const modifier = direction === "asc" ? 1 : -1;
 
-  const sortCabins = filterCabin?.sort((a,b)=> (a[field]- b[field])*modifier);
-
-
-
+  const sortCabins = filterCabin?.sort(
+    (a, b) => (a[field] - b[field]) * modifier,
+  );
 
   if (isPending) return <Spinner />;
   return (

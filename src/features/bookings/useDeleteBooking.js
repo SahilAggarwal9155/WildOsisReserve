@@ -17,5 +17,5 @@ export default function useDeleteBooking() {
     onError: (err) => toast.error(err.message),
   });
 
-  return { isDeleting, deleteBooking};
+  return { isDeleting, deleteBooking };
 }
