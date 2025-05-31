@@ -90,22 +90,17 @@ function Row({ children }) {
 }
 
 function Body({ data, render }) {
-  console.log('This is in body component');
+  console.log("This is in body component");
   console.log(data);
 
   if (!data?.length) return <Empty>No data is available at that moment</Empty>;
   return <StyledBody>{data.map(render)}</StyledBody>;
 }
 
-
 function Footer({ children }) {
   // const { columns } = useContext(TableContext);
 
-  return (
-    <StyledFooter>
-      {children}
-    </StyledFooter>
-  );
+  return <StyledFooter>{children}</StyledFooter>;
 }
 
 Table.Header = Header;

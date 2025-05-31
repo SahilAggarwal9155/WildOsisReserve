@@ -49,7 +49,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
           onSuccess: () => {
             reset(),
               //Same thing happen here if its edit the cabin so it automatically remove the modal from window
-            onCloseModal?.();
+              onCloseModal?.();
           },
         },
       );

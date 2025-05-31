@@ -4,8 +4,7 @@ import Form from "../../ui/Form";
 import Input from "../../ui/Input";
 import FormRowVertical from "../../ui/FormRowVertical";
 import { useLogin } from "./useLogin";
-import SpinnerMini from "./../../ui/SpinnerMini"
-
+import SpinnerMini from "./../../ui/SpinnerMini";
 
 function LoginForm() {
   const [email, setEmail] = useState("sahilaggrwl12@gmail.com");
@@ -15,9 +14,14 @@ function LoginForm() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if(!email || !password) return;
+    if (!email || !password) return;
 
-    login({email, password});
+    login({ email, password }, {
+      onSettled: ()=>{
+        setEmail("");
+        setPassword("");
+      }
+    });
   }
 
   return (
@@ -43,8 +47,10 @@ function LoginForm() {
           disabled={isPending}
         />
       </FormRowVertical>
-      <FormRowVertical> 
-        <Button size="large" disabled={isPending} >{!isPending ? 'Login' : (<SpinnerMini />)}</Button>
+      <FormRowVertical>
+        <Button size="large" disabled={isPending}>
+          {!isPending ? "Login" : <SpinnerMini />}
+        </Button>
       </FormRowVertical>
     </Form>
   );
