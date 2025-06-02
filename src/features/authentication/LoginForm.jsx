@@ -18,10 +18,13 @@ function LoginForm() {
 
     login({ email, password }, {
       onSettled: ()=>{
+        console.log('Hello this is login page');
         setEmail("");
         setPassword("");
       }
     });
+
+  
   }
 
   return (
