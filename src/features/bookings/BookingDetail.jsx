@@ -44,7 +44,7 @@ function BookingDetail() {
   };
 
   if (isPending) return <Spinner />;
-  if(!booking) return <Empty resource={'booking'}/>
+  if (!booking) return <Empty resource={"booking"} />;
 
   return (
     <>

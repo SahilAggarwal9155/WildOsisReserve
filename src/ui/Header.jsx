@@ -1,7 +1,7 @@
 // import { NavLink } from 'react-router-dom'
-import styled from 'styled-components'
-import HeaderMenu from './HeaderMenu'
-import UserAvatar from "../features/authentication/UserAvatar"
+import styled from "styled-components";
+import HeaderMenu from "./HeaderMenu";
+import UserAvatar from "../features/authentication/UserAvatar";
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);
@@ -12,13 +12,13 @@ const StyledHeader = styled.header`
   justify-content: flex-end;
   gap: 2.4rem;
   align-items: center;
-`
+`;
 
 export default function Header() {
   return (
     <StyledHeader>
-      <UserAvatar/>
-      <HeaderMenu/>
+      <UserAvatar />
+      <HeaderMenu />
     </StyledHeader>
-  )
+  );
 }

@@ -14,5 +14,3 @@ const Tag = styled.span`
 `;
 
 export default Tag;
-
-

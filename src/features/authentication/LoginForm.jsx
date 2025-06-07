@@ -16,15 +16,16 @@ function LoginForm() {
 
     if (!email || !password) return;
 
-    login({ email, password }, {
-      onSettled: ()=>{
-        console.log('Hello this is login page');
-        setEmail("");
-        setPassword("");
-      }
-    });
-
-  
+    login(
+      { email, password },
+      {
+        onSettled: () => {
+          console.log("Hello this is login page");
+          setEmail("");
+          setPassword("");
+        },
+      },
+    );
   }
 
   return (

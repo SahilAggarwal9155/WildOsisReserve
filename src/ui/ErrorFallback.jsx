@@ -33,20 +33,24 @@ const Box = styled.div`
   }
 `;
 
-
-export default function ErrorFallback({error, resetErrorBoundary}) {
+export default function ErrorFallback({ error, resetErrorBoundary }) {
   return (
     <>
-    <GlobalStyles/>
-    <StyledErrorFallback>
-      <Box>
-        <Heading as='h1'>Something went wrong</Heading>
-        <p>{error.message}</p>
+      <GlobalStyles />
+      <StyledErrorFallback>
+        <Box>
+          <Heading as="h1">Something went wrong</Heading>
+          <p>{error.message}</p>
 
-        <Button $size='large' $variation='primary' onClick={resetErrorBoundary}>Try Again</Button>
-      </Box>
-
-    </StyledErrorFallback>
+          <Button
+            $size="large"
+            $variation="primary"
+            onClick={resetErrorBoundary}
+          >
+            Try Again
+          </Button>
+        </Box>
+      </StyledErrorFallback>
     </>
-  )
+  );
 }

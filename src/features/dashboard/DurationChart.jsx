@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import Heading from "../../ui/Heading";
-import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import {
+  Cell,
+  Legend,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
+} from "recharts";
 
 const ChartBox = styled.div`
   /* Box */
@@ -106,7 +113,7 @@ const startDataLight = [
 //   },
 // ];
 
-function prepareData(startData, stays=[]) {
+function prepareData(startData, stays = []) {
   // A bit ugly code, but sometimes this is what it takes when working with real data 😅
 
   function incArrayValue(arr, field) {
@@ -133,22 +140,42 @@ function prepareData(startData, stays=[]) {
   return data;
 }
 
-
-export default function DurationChart({confirmedStays}) {
+export default function DurationChart({ confirmedStays }) {
   const data = prepareData(startDataLight, confirmedStays);
   return (
-     <ChartBox>
-      <Heading as='h2'>Stay duration Summary</Heading>
-      <ResponsiveContainer width={'100%'} height={240}>
+    <ChartBox>
+      <Heading as="h2">Stay duration Summary</Heading>
+      <ResponsiveContainer width={"100%"} height={240}>
         <PieChart>
-          <Pie data={data} nameKey='duration' dataKey='value' innerRadius={85} outerRadius={110} cx={'40%'} cy={'50%'} paddingAngle={3}>
-            {data.map((entry)=>(<Cell fill={entry.color} stroke={entry.color} key={entry.duration}/>))}
+          <Pie
+            data={data}
+            nameKey="duration"
+            dataKey="value"
+            innerRadius={85}
+            outerRadius={110}
+            cx={"40%"}
+            cy={"50%"}
+            paddingAngle={3}
+          >
+            {data.map((entry) => (
+              <Cell
+                fill={entry.color}
+                stroke={entry.color}
+                key={entry.duration}
+              />
+            ))}
           </Pie>
           <Tooltip />
-          <Legend verticalAlign="middle" align="right" width={'30%'} layout="vertical" iconSize={15} iconType="circle" />
-
+          <Legend
+            verticalAlign="middle"
+            align="right"
+            width={"30%"}
+            layout="vertical"
+            iconSize={15}
+            iconType="circle"
+          />
         </PieChart>
       </ResponsiveContainer>
-     </ChartBox>
-  )
+    </ChartBox>
+  );
 }

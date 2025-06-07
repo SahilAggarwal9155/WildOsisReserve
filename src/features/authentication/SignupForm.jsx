@@ -1,21 +1,24 @@
-import { useForm } from 'react-hook-form'
-import Button from '../../ui/Button'
-import Form from '../../ui/Form'
-import FormRow from '../../ui/FormRow'
-import Input from '../../ui/Input'
-import useSignup from './useSignup'
+import { useForm } from "react-hook-form";
+import Button from "../../ui/Button";
+import Form from "../../ui/Form";
+import FormRow from "../../ui/FormRow";
+import Input from "../../ui/Input";
+import useSignup from "./useSignup";
 
 // Email regex: /\S+@\S+\.\S+/
 
 function SignupForm() {
   const { register, formState, getValues, handleSubmit, reset } = useForm();
   const { errors } = formState;
-  const {signup, isPending} = useSignup();
-  
-  function onSubmit({fullName, email, password}){
-     signup({fullName,email, password}, {
-      onSettled: reset
-     })
+  const { signup, isPending } = useSignup();
+
+  function onSubmit({ fullName, email, password }) {
+    signup(
+      { fullName, email, password },
+      {
+        onSettled: reset,
+      },
+    );
   }
 
   return (
@@ -25,7 +28,7 @@ function SignupForm() {
           type="text"
           id="fullName"
           disabled={isPending}
-          {...register('fullName', { required: 'This field is required' })}
+          {...register("fullName", { required: "This field is required" })}
         />
       </FormRow>
 
@@ -34,26 +37,29 @@ function SignupForm() {
           type="email"
           id="email"
           disabled={isPending}
-          {...register('email', {
-            required: 'This field is required',
+          {...register("email", {
+            required: "This field is required",
             pattern: {
               value: /\S+@\S+\.\S+/,
-              message: 'Please provide a valid email address',
+              message: "Please provide a valid email address",
             },
           })}
         />
       </FormRow>
 
-      <FormRow label="Password (min 8 characters)" error={errors?.password?.message}>
+      <FormRow
+        label="Password (min 8 characters)"
+        error={errors?.password?.message}
+      >
         <Input
           type="password"
           id="password"
           disabled={isPending}
-          {...register('password', {
-            required: 'This field is required',
+          {...register("password", {
+            required: "This field is required",
             maxLength: {
               value: 8,
-              message: 'The password must be 8 characters',
+              message: "The password must be 8 characters",
             },
           })}
         />
@@ -64,9 +70,10 @@ function SignupForm() {
           type="password"
           disabled={isPending}
           id="passwordConfirm"
-          {...register('passwordConfirm', {
-            required: 'This field is required',
-            validate: (value)=> value == getValues().password || 'Password need to be match'
+          {...register("passwordConfirm", {
+            required: "This field is required",
+            validate: (value) =>
+              value == getValues().password || "Password need to be match",
           })}
         />
       </FormRow>
@@ -79,7 +86,7 @@ function SignupForm() {
         <Button disabled={isPending}>Create new user</Button>
       </FormRow>
     </Form>
-  )
+  );
 }
 
-export default SignupForm
+export default SignupForm;
