@@ -11,9 +11,9 @@ import styled from "styled-components";
 import useUpdateUser from "./useUpdateUser";
 
 const StyledForm = styled.form`
-   padding: 15px;
-   margin: 20px;
-   `
+  padding: 15px;
+  margin: 20px;
+`;
 
 function UpdateUserDataForm() {
   // We don't need the loading state, and can immediately use the user data, because we know that it has already been loaded at this point
@@ -24,7 +24,7 @@ function UpdateUserDataForm() {
     },
   } = useUser();
 
-  const {updateUser, isUpdating} = useUpdateUser();
+  const { updateUser, isUpdating } = useUpdateUser();
 
   const [fullName, setFullName] = useState(currentFullName);
   const [avatar, setAvatar] = useState(null);
@@ -32,17 +32,20 @@ function UpdateUserDataForm() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if(!fullName) return;
+    if (!fullName) return;
 
-    updateUser({fullName, avatar},{
-      onSuccess: ()=>{
-        setAvatar(null);
-        e.target.reset();
-      }
-    });
+    updateUser(
+      { fullName, avatar },
+      {
+        onSuccess: () => {
+          setAvatar(null);
+          e.target.reset();
+        },
+      },
+    );
   }
 
-  function handleCancel(){
+  function handleCancel() {
     setFullName(currentFullName);
     setAvatar(null);
   }
@@ -72,7 +75,7 @@ function UpdateUserDataForm() {
         <Button type="reset" variation="secondary" onClick={handleCancel}>
           Cancel
         </Button>
-        <Button   disabled={isUpdating}>Update account</Button>
+        <Button disabled={isUpdating}>Update account</Button>
       </FormRow>
     </StyledForm>
   );
