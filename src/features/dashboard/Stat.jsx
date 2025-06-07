@@ -57,4 +57,6 @@ function Stat({ icon, title, value, color }) {
   );
 }
 
-export default Stat;
+
+export default Stat
+ 
